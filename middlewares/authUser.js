@@ -2,7 +2,7 @@ const ErrorHandler = require('../utils/errorhander')
 const catchAsyncErrors = require('./catchAsyncErrors')
 
 const jwt = require('jsonwebtoken')
-const User = require('../models/User')
+const User = require('../models/user')
 
 // user is logged in or not
 
