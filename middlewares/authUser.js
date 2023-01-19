@@ -7,9 +7,7 @@ const User = require('../models/user')
 // user is logged in or not
 
 exports.isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {
-    // const { token } = req.header.x-auth-token;
-    console.log(req.header)
-    return;
+    const token = req.headers['x-auth-token'];
     
     if (!token) {
         return next(new ErrorHandler("Please Login to access this resource", 401));

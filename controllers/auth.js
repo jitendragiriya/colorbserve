@@ -8,10 +8,9 @@ const User = require("../models/user");
 exports.login = catchAsyncErrors(async (req, res, next) => {
   const { user_id, password , name} = req.body;
 
-  if (!user_id || !password || name) {
+  if (!user_id || !password || !name) {
     return next(new ErrorHandler("Invalid credentials!"));
   }
-
   let data = await User.findOne({ user_id }).select("+password");
 
   if (!data) {
@@ -21,6 +20,7 @@ exports.login = catchAsyncErrors(async (req, res, next) => {
   if (password !== data.password) {
     return next(new ErrorHandler("Invalid credentials!", 401));
   }
+
   sendToken(data, 200, res);
 });
 
