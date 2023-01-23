@@ -1,12 +1,13 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const { CORS_URL } = require("./constants");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: process.env.CORS_URL,
+    origin: CORS_URL,
     credentials: true,
     optionSuccessStatus: 200,
   })

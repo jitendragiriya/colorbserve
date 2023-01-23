@@ -1,5 +1,6 @@
 const app = require("./app");
 const connectDB = require("./config/db");
+const { PORT } = require("./constants");
 
 // Handling Uncaught Exception
 process.on("uncaughtException", (err) => {
@@ -8,20 +9,16 @@ process.on("uncaughtException", (err) => {
   process.exit(1);
 });
 
-if (process.env.NODE_ENV !== "PRODUCTION") {
-  require("dotenv").config({ path: "./config/.env" });
-}
-
 connectDB();
 
 const ErrorHandler = require("./middlewares/error");
 
 app.use(ErrorHandler);
 
-const PORT = process.env.PORT || 5000;
+const port =  PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`server is running on port http://localhost:${PORT}`);
+app.listen(port, () => {
+  console.log(`server is running on port http://localhost:${port}`);
 });
 
 process.on("unhandledRejection", (err) => {

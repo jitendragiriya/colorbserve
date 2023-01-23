@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
+const { MONGO_URL } = require("../constants");
 
 const connectDB = async () => {
   await mongoose
-    .connect(process.env.MONGO_URL, {
+    .connect(MONGO_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       // useCreateIndex: true,
